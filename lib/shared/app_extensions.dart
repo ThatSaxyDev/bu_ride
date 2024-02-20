@@ -1,5 +1,6 @@
 //! THIS FILE CONTAINS HOPEFULLY, ALL EXTENSIONS USED IN THE APP.
 import "dart:io";
+import "package:bu_ride/shared/app_constants.dart";
 import "package:bu_ride/shared/utils/type_defs.dart";
 import "package:bu_ride/theme/palette.dart";
 import "package:flutter/foundation.dart";
@@ -367,6 +368,16 @@ extension SvgPath on String {
   String get svg => 'lib/assets/svgs/$this.svg';
 }
 
+extension ResponsiveExt on num {
+  double rW(BuildContext context) => (this * width(context)) / 1440;
+  double rH(BuildContext context) => (this * height(context)) / 1024;
+}
+
+extension ResponsiveExtD on double {
+  double rW(BuildContext context) => (this * width(context)) / 1440;
+  double rH(BuildContext context) => (this * height(context)) / 1024;
+}
+
 extension NumExtensions on int {
   num addPercentage(num v) => this + ((v / 100) * this);
   num getPercentage(num v) => ((v / 100) * this);
@@ -386,12 +397,12 @@ extension NumExtensionss on num {
 // }
 
 extension WidgetExtensionss on num {
-  Widget get sbH => SizedBox(
-        height: toDouble(),
+  Widget sbH(BuildContext context) => SizedBox(
+        height: rH(context).toDouble(),
       );
 
-  Widget get sbW => SizedBox(
-        width: toDouble(),
+  Widget sbW(BuildContext context) => SizedBox(
+        width: rW(context).toDouble(),
       );
 
   EdgeInsetsGeometry get padV => EdgeInsets.symmetric(vertical: toDouble());
@@ -400,12 +411,12 @@ extension WidgetExtensionss on num {
 }
 
 extension WidgetExtensions on double {
-  Widget get sbH => SizedBox(
-        height: this,
+  Widget sbH(BuildContext context) => SizedBox(
+        height: rH(context),
       );
 
-  Widget get sbW => SizedBox(
-        width: this,
+  Widget sbW(BuildContext context) => SizedBox(
+        width: rW(context),
       );
 
   EdgeInsetsGeometry get padA => EdgeInsets.all(this);

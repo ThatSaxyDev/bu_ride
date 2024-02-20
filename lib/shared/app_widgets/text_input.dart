@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bu_ride/shared/app_extensions.dart';
 import "package:bu_ride/theme/palette.dart";
+import 'package:the_responsive_builder/the_responsive_builder.dart';
 
 class TextInputWidget extends StatelessWidget {
   final double? height;
@@ -73,25 +74,20 @@ class TextInputWidget extends StatelessWidget {
       onTap: onTap,
       child: SizedBox(
         // color: Colors.red,
-        height: hastitle ? 68 : 40,
+        height: hastitle ? 130.rH(context) : 76.rH(context),
         width: width ?? double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             if (hastitle == true)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  inputTitle.txt14(
-                    fontW: titleFontWeight ?? F.w5,
-                    color: grey700,
-                  ),
-                  if (cardIcon != null) cardIcon!
-                ],
+              inputTitle.txt(
+                size: 15.dp,
+                fontW: titleFontWeight ?? F.w5,
+                color: grey700,
               ),
             SizedBox(
-              height: 40,
+              height: 76.rH(context),
               child: TextFormField(
                 textInputAction: TextInputAction.done,
                 readOnly: readOnly,
@@ -113,7 +109,7 @@ class TextInputWidget extends StatelessWidget {
                 obscureText: obscuretext,
                 obscuringCharacter: '*',
                 cursorColor: Colors.black,
-                cursorHeight: 16,
+                cursorHeight: 16.rH(context),
                 decoration: InputDecoration(
                   filled: filled,
                   fillColor: fillColor,
@@ -133,23 +129,23 @@ class TextInputWidget extends StatelessWidget {
                   ),
                   border: OutlineInputBorder(
                     borderSide: const BorderSide(color: grey200),
-                    borderRadius: BorderRadius.circular(18),
+                    borderRadius: BorderRadius.circular(15),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: const BorderSide(color: grey200),
-                    borderRadius: BorderRadius.circular(18),
+                    borderRadius: BorderRadius.circular(15),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: const BorderSide(color: grey200),
-                    borderRadius: BorderRadius.circular(18),
+                    borderRadius: BorderRadius.circular(15),
                   ),
                   errorBorder: OutlineInputBorder(
                     borderSide: const BorderSide(color: grey200),
-                    borderRadius: BorderRadius.circular(18),
+                    borderRadius: BorderRadius.circular(15),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderSide: const BorderSide(color: grey200),
-                    borderRadius: BorderRadius.circular(18),
+                    borderRadius: BorderRadius.circular(15),
                   ),
                 ),
                 validator: validator,
@@ -161,4 +157,3 @@ class TextInputWidget extends StatelessWidget {
     );
   }
 }
-

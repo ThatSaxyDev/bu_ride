@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:bu_ride/shared/app_extensions.dart';
 import 'package:flutter/material.dart';
 import "package:bu_ride/theme/palette.dart";
 
@@ -43,7 +44,7 @@ class BButton extends StatelessWidget {
     return IgnorePointer(
       ignoring: isLoading,
       child: SizedBox(
-        height: height ?? 44,
+        height: height ?? 65.rH(context),
         width: width ?? 327,
         child: ElevatedButton(
           onPressed: onTap,
@@ -57,13 +58,13 @@ class BButton extends StatelessWidget {
                     : Colors.transparent,
               ),
               borderRadius: BorderRadius.all(
-                Radius.circular(radius ?? 20),
+                Radius.circular(radius ?? 10),
               ),
             ),
             padding: EdgeInsets.zero,
             elevation: 0,
             shadowColor: Colors.transparent,
-            backgroundColor: color ?? primaryBase,
+            backgroundColor: color ?? primaryBlue,
           ),
           child: Center(
             child: isText == true
