@@ -1,7 +1,8 @@
-import 'package:bu_ride/app/auth/views/admin_login_view.dart';
+import 'package:bu_ride/router.dart';
 import 'package:bu_ride/theme/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:routemaster/routemaster.dart';
 
 void main() {
   runApp(
@@ -16,14 +17,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'BU Ride',
-      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: primaryBlue),
         useMaterial3: true,
       ),
-      home: const AdminLoginView(),
+      debugShowCheckedModeBanner: false,
+      routerDelegate: RoutemasterDelegate(
+        routesBuilder: (context) {
+          // if (user != null) {
+          //   getData(ref, user);
+          //   if (userModel != null) {
+          //     return loggedInRoute;
+          //   }
+          // }
+          return loggedOutRoute;
+        },
+      ),
+      routeInformationParser: const RoutemasterParser(),
     );
+    
   }
 }
