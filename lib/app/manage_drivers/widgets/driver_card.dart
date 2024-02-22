@@ -1,3 +1,4 @@
+import 'package:bu_ride/app/manage_drivers/providers/manage_drivers_providers.dart';
 import 'package:bu_ride/models/driver_model.dart';
 import 'package:bu_ride/shared/app_extensions.dart';
 import 'package:bu_ride/shared/app_widgets/custom_flex.dart';
@@ -15,6 +16,9 @@ class DriverCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // final driversState = ref.watch(manageDriversNotifierProvider);
+    final driversStateNotifier =
+        ref.read(manageDriversNotifierProvider.notifier);
     return Container(
       height: 175.rH(context),
       width: double.infinity,
@@ -49,7 +53,10 @@ class DriverCard extends ConsumerWidget {
                       color: redColor,
                     ),
                   ],
-                ),
+                ).tap(onTap: () {
+                  driversStateNotifier.deleteDriver(
+                      driver: driver, context: context);
+                }),
                 30.sbW(context),
                 Row(
                   children: [
@@ -57,7 +64,10 @@ class DriverCard extends ConsumerWidget {
                     5.sbW(context),
                     'EDIT'.txt14(),
                   ],
-                ),
+                ).tap(onTap: () {
+                  driversStateNotifier.setDriverToEditAndMoveToEdit(
+                      driver: driver);
+                }),
               ],
             ),
             7.5.sbH(context),

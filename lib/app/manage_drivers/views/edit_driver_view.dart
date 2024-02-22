@@ -1,31 +1,57 @@
 import 'package:bu_ride/app/manage_drivers/providers/manage_drivers_providers.dart';
+import 'package:bu_ride/models/driver_model.dart';
 import 'package:bu_ride/shared/app_constants.dart';
 import 'package:bu_ride/shared/app_extensions.dart';
 import 'package:bu_ride/shared/app_widgets/text_input.dart';
 import 'package:bu_ride/theme/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../shared/app_widgets/button.dart';
 
-class AddDriverView extends ConsumerStatefulWidget {
-  const AddDriverView({super.key});
+class EditDriverView extends ConsumerStatefulWidget {
+  const EditDriverView({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _AddDriverViewState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _EditDriverViewState();
 }
 
-class _AddDriverViewState extends ConsumerState<AddDriverView> {
+class _EditDriverViewState extends ConsumerState<EditDriverView> {
   final TextEditingController _firstNameController = TextEditingController();
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emaailController = TextEditingController();
   final TextEditingController _vatController = TextEditingController();
+
+  DriverModel? driver;
+
+  void getDriverToEdit() async {
+    await Future.delayed(100.ms).then((value) {
+      driver = ref.read(manageDriversNotifierProvider).driverToEdit;
+      if (driver != null) {
+        _firstNameController.text = driver!.firstName;
+        _lastNameController.text = driver!.lastName;
+        _emaailController.text = driver!.emailAddress;
+        setState(() {});
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getDriverToEdit();
+  }
 
   @override
   Widget build(BuildContext context) {
     final driversState = ref.watch(manageDriversNotifierProvider);
     final driversStateNotifier =
         ref.read(manageDriversNotifierProvider.notifier);
+
+    if (driver == null) {
+      return const SizedBox.shrink();
+    }
     return SizedBox(
       height: height(context),
       child: SingleChildScrollView(
@@ -53,7 +79,7 @@ class _AddDriverViewState extends ConsumerState<AddDriverView> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        'Add Driver'.txt18(fontWeight: FontWeight.w700),
+                        'Edit Driver'.txt18(fontWeight: FontWeight.w700),
                         // '+ Add Driver'.txt18()
                       ],
                     ),
@@ -86,15 +112,18 @@ class _AddDriverViewState extends ConsumerState<AddDriverView> {
                         ? const CircularProgressIndicator()
                         : BButton(
                             onTap: () {
-                              driversStateNotifier.addDriver(
-                                firstName: _firstNameController.text,
-                                lastName: _lastNameController.text,
-                                email: _emaailController.text,
+                              driversStateNotifier.editDriver(
+                                driver: driver!.copyWith(
+                                  emailAddress: _emaailController.text,
+                                  firstName: _firstNameController.text,
+                                  lastName: _lastNameController.text,
+                                  dateJUpdated: DateTime.now(),
+                                ),
                                 context: context,
                               );
                             },
                             width: double.infinity,
-                            text: 'Add',
+                            text: 'Edit',
                           ),
                   ],
                 ),

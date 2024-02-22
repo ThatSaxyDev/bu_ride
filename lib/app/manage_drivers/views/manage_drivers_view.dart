@@ -1,5 +1,6 @@
 import 'package:bu_ride/app/dashboard/notifiers/dashboard_state_notifier.dart';
 import 'package:bu_ride/app/dashboard/providers/dashboard_providers.dart';
+import 'package:bu_ride/app/manage_drivers/providers/manage_drivers_providers.dart';
 import 'package:bu_ride/app/manage_drivers/widgets/driver_card.dart';
 import 'package:bu_ride/models/driver_model.dart';
 import 'package:bu_ride/shared/app_constants.dart';
@@ -50,24 +51,39 @@ class ManageDriversView extends ConsumerWidget {
                       ],
                     ),
                     const SizedBox(height: 28),
-                    SeparatedColumn(
-                      separatorBuilder: () => const SizedBox(height: 16),
-                      children: List.generate(
-                        12,
-                        (index) {
-                          DriverModel driver = DriverModel(
-                              id: '',
-                              firstName: 'David',
-                              lastName: 'Dedeke',
-                              emailAddress: 'thatsaxydev@gmail.com',
-                              vatNumber: 'csdcwc3321w',
-                              dateJoined: DateTime.now(),
-                              dateJUpdated: DateTime.now(),
-                              isAvailable: true);
-                          return DriverCard(driver: driver);
-                        },
-                      ),
-                    ),
+                    ref.watch(getDriversProviderr).when(
+                          data: (data) {
+                            if (data.isEmpty) {
+                              return Column(
+                                children: [
+                                  20.sbH(context),
+                                  'No drivers yet!'.txt20(),
+                                ],
+                              );
+                            }
+                            return SeparatedColumn(
+                              separatorBuilder: () =>
+                                  const SizedBox(height: 16),
+                              children: List.generate(
+                                data.length,
+                                (index) {
+                                  DriverModel driver = data[index];
+                                  return DriverCard(driver: driver);
+                                },
+                              ),
+                            );
+                          },
+                          error: (e, s) => 'error'.txt(),
+                          loading: () => SeparatedColumn(
+                            separatorBuilder: () => const SizedBox(height: 16),
+                            children: List.generate(
+                              6,
+                              (index) {
+                                return const CardSkel();
+                              },
+                            ),
+                          ),
+                        ),
                   ],
                 ),
               ),

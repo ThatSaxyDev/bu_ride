@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:bu_ride/models/driver_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DashboardStateNotifier extends Notifier<DashboardState> {
@@ -21,6 +22,10 @@ class DashboardStateNotifier extends Notifier<DashboardState> {
 
   void switchToPageIndex(int newIndex) {
     state = state.copyWith(pageIndex: newIndex);
+  }
+
+  void switchToEditDriver() {
+    switchToPageIndex(5);
   }
 }
 
