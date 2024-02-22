@@ -1,3 +1,4 @@
+import 'package:bu_ride/app/auth/providers/auth_providers.dart';
 import 'package:bu_ride/app/dashboard/notifiers/dashboard_state_notifier.dart';
 import 'package:bu_ride/app/dashboard/providers/dashboard_providers.dart';
 import 'package:bu_ride/shared/app_constants.dart';
@@ -21,6 +22,8 @@ class SideNav extends ConsumerWidget {
     DashboardStateNotifier dashboardStateNotifier =
         ref.read(dashboardStateNotifierProvider.notifier);
     DashboardState dashboardState = ref.watch(dashboardStateNotifierProvider);
+    final authState = ref.watch(authStateNotifierProvider);
+    final authStateNotifier = ref.read(authStateNotifierProvider.notifier);
     return AnimatedContainer(
       duration: 300.ms,
       height: height(context),
@@ -116,9 +119,13 @@ class SideNav extends ConsumerWidget {
                       child: Row(
                         children: [
                           33.sbW(context),
-                          CircleAvatar(
-                            radius: 19.rH(context),
-                          ),
+                          authState.isLoading
+                              ? const CircularProgressIndicator()
+                              : CircleAvatar(
+                                  radius: 19.rH(context),
+                                ).tap(onTap: () {
+                                  authStateNotifier.logOut(context: context);
+                                }),
                           10.sbW(context),
                           SizedBox(
                             height: 50.rH(context),

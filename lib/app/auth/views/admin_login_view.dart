@@ -1,5 +1,6 @@
+import 'package:bu_ride/app/auth/providers/auth_providers.dart';
 import 'package:bu_ride/app/dashboard/views/dashboard_view.dart';
-import 'package:bu_ride/routes.dart';
+import 'package:bu_ride/router.dart';
 import 'package:bu_ride/shared/app_extensions.dart';
 import 'package:bu_ride/shared/app_widgets/button.dart';
 import 'package:bu_ride/shared/app_widgets/text_input.dart';
@@ -29,6 +30,8 @@ class _AdminLoginViewState extends ConsumerState<AdminLoginView> {
 
   @override
   Widget build(BuildContext context) {
+    final authState = ref.watch(authStateNotifierProvider);
+    final authStateNotifier = ref.read(authStateNotifierProvider.notifier);
     return Scaffold(
       body: Row(
         children: [
@@ -101,13 +104,20 @@ class _AdminLoginViewState extends ConsumerState<AdminLoginView> {
                       ],
                     ),
                     72.sbH(context),
-                    BButton(
-                      onTap: () {
-                        nav(DashboardView.name, context);
-                      },
-                      width: double.infinity,
-                      text: 'Enter',
-                    ),
+                    authState.isLoading
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : BButton(
+                            onTap: () {
+                              authStateNotifier.loginAdmin(
+                                  email: _emailController.text.trim(),
+                                  password: _passwordController.text.trim(),
+                                  context: context);
+                            },
+                            width: double.infinity,
+                            text: 'Enter',
+                          ),
                   ],
                 ),
               ),

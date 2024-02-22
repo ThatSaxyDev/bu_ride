@@ -129,96 +129,104 @@ class AdminBoardView extends ConsumerWidget {
                 children: [
                   //! graph
                   Container(
-                    height: 441,
-                    width: 629,
-                    margin: const EdgeInsets.only(right: 24),
-                    padding: const EdgeInsets.all(16),
+                    height: 441.rH(context),
+                    width: 629.rW(context),
+                    margin: EdgeInsets.only(right: 24.rW(context)),
+                    padding: EdgeInsets.only(
+                      top: 16.rH(context),
+                      bottom: 16.rH(context),
+                      right: 16.rW(context),
+                      left: 16.rW(context),
+                    ),
                     decoration: ShapeDecoration(
                       color: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 222,
-                          width: double.infinity,
-                          margin: const EdgeInsets.only(bottom: 24),
-                          decoration: ShapeDecoration(
-                            color: primaryBlue,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 222.rH(context),
+                            width: double.infinity,
+                            margin: const EdgeInsets.only(bottom: 24),
+                            decoration: ShapeDecoration(
+                              color: primaryBlue,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
                             ),
                           ),
-                        ),
-                        'Active Users'
-                            .txt(
-                              size: 18,
-                              fontWeight: FontWeight.w700,
-                            )
-                            .alignCenterLeft(),
-                        const SizedBox(
-                          height: 6,
-                        ),
-                        RichText(
-                          text: const TextSpan(
-                            text: '',
-                            children: [
-                              TextSpan(
-                                text: '(+23%)',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w700,
-                                  color: greenColor,
-                                ),
-                              ),
-                              TextSpan(
-                                text: ' than last week',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  color: grey500,
-                                ),
-                              ),
-                            ],
+                          'Active Users'
+                              .txt(
+                                size: 18,
+                                fontWeight: FontWeight.w700,
+                              )
+                              .alignCenterLeft(),
+                          const SizedBox(
+                            height: 6,
                           ),
-                        ).alignCenterLeft(),
-                        const Spacer(),
-                        CustomizableRow(
-                          flexValues: const [1, 1, 1],
-                          children: List.generate(
-                            DashboardStuff.values.length,
-                            (index) => Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                          RichText(
+                            text: const TextSpan(
+                              text: '',
                               children: [
-                                Row(
-                                  children: [
-                                    Image.asset(
-                                      DashboardStuff.values[index].name.png,
-                                      height: 25,
-                                      width: 30,
-                                    ),
-                                    const SizedBox(width: 12),
-                                    DashboardStuff.values[index].name
-                                        .toCapitalized()
-                                        .txt12(
-                                          fontWeight: FontWeight.w700,
-                                          color: greyy,
-                                        ),
-                                  ],
+                                TextSpan(
+                                  text: '(+23%)',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700,
+                                    color: greenColor,
+                                  ),
                                 ),
-                                const SizedBox(height: 5.5),
-                                '2000'.txt(
-                                  size: 18,
-                                  fontWeight: FontWeight.w700,
-                                  color: greyy,
+                                TextSpan(
+                                  text: ' than last week',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                    color: grey500,
+                                  ),
                                 ),
                               ],
                             ),
+                          ).alignCenterLeft(),
+                          // const Spacer(),
+                          SizedBox(height: 40.rH(context)),
+                          CustomizableRow(
+                            flexValues: const [1, 1, 1],
+                            children: List.generate(
+                              DashboardStuff.values.length,
+                              (index) => Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        DashboardStuff.values[index].name.png,
+                                        height: 25,
+                                        width: 30,
+                                      ),
+                                      const SizedBox(width: 12),
+                                      DashboardStuff.values[index].name
+                                          .toCapitalized()
+                                          .txt12(
+                                            fontWeight: FontWeight.w700,
+                                            color: greyy,
+                                          ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 5.5),
+                                  '2000'.txt(
+                                    size: 18,
+                                    fontWeight: FontWeight.w700,
+                                    color: greyy,
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
 

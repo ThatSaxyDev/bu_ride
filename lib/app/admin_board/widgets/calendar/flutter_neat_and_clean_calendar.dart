@@ -473,8 +473,9 @@ class _CalendarState extends State<Calendar> {
           dayOfWeek: day,
           dayOfWeekStyle: widget.dayOfWeekStyle ??
               const TextStyle(
-                color: Color(0xFF838383),
-                fontSize: 12,
+                color: primaryBlue,
+                fontSize: 14,
+                fontWeight: FontWeight.w700,
               ),
         ),
       );
@@ -750,8 +751,8 @@ class _CalendarState extends State<Calendar> {
       });
     }
     return Container(
-      height: 441,
-      width: 328,
+      height: 441.rH(context),
+      width: 328.rW(context),
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
       decoration: ShapeDecoration(
         color: Colors.white,

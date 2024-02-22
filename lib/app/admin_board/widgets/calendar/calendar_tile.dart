@@ -82,7 +82,7 @@ class NeatCleanCalendarTile extends StatelessWidget {
         child: Container(
           alignment: Alignment.center,
           child: Text(
-            dayOfWeek ?? '',
+            (dayOfWeek ?? '').substring(0, 1),
             style: dayOfWeekStyle,
           ),
         ),
