@@ -27,6 +27,11 @@ dependencies:
   responsive_framework: ^1.1.1
   animations: ^2.0.11
   flextras: ^1.0.0
+  skeletonizer: ^1.0.1
+  firebase_core: ^2.25.4
+  firebase_storage: ^11.6.5
+  cloud_firestore: ^4.15.4
+  firebase_auth: ^4.17.4
 
 dev_dependencies:
   flutter_test:

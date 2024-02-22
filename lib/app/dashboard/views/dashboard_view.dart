@@ -3,6 +3,7 @@ import 'package:bu_ride/app/dashboard/notifiers/dashboard_state_notifier.dart';
 import 'package:bu_ride/app/dashboard/providers/dashboard_providers.dart';
 import 'package:bu_ride/app/dashboard/widgets/side_nav.dart';
 import 'package:bu_ride/app/manage_drivers/views/manage_drivers_view.dart';
+import 'package:bu_ride/app/orders/views/orders_view.dart';
 import 'package:bu_ride/shared/app_constants.dart';
 import 'package:bu_ride/shared/app_extensions.dart';
 import 'package:bu_ride/shared/app_widgets/myicon.dart';
@@ -42,9 +43,7 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
 
 List<Widget> pages = [
   const AdminBoardView(),
-  Center(
-    child: 'ride'.txt(),
-  ),
+  const OrdersView(),
   const ManageDriversView(),
   Center(
     child: 'settings'.txt(),

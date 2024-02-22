@@ -1,5 +1,7 @@
 import 'package:bu_ride/app/manage_drivers/widgets/driver_card.dart';
+import 'package:bu_ride/app/orders/widgets/order_card.dart';
 import 'package:bu_ride/models/driver_model.dart';
+import 'package:bu_ride/models/order_model.dart';
 import 'package:bu_ride/shared/app_constants.dart';
 import 'package:bu_ride/shared/app_extensions.dart';
 import 'package:bu_ride/theme/palette.dart';
@@ -7,8 +9,8 @@ import 'package:flextras/flextras.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
-class ManageDriversView extends ConsumerWidget {
-  const ManageDriversView({super.key});
+class OrdersView extends ConsumerWidget {
+  const OrdersView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -39,8 +41,8 @@ class ManageDriversView extends ConsumerWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        'Our Drivers'.txt18(fontWeight: FontWeight.w700),
-                        '+ Add Driver'.txt18()
+                        'Orders'.txt18(fontWeight: FontWeight.w700),
+                        // '+ Add Driver'.txt18()
                       ],
                     ),
                     const SizedBox(height: 28),
@@ -49,16 +51,17 @@ class ManageDriversView extends ConsumerWidget {
                       children: List.generate(
                         12,
                         (index) {
-                          DriverModel driver = DriverModel(
+                          OrderModel order = OrderModel(
                             id: '',
                             firstName: 'David',
                             lastName: 'Dedeke',
                             emailAddress: 'thatsaxydev@gmail.com',
-                            vatNumber: 'csdcwc3321w',
-                            dateJoined: DateTime.now(),
-                            dateJUpdated: DateTime.now(),
+                            pickUpLocation: 'Bethel',
+                            destination: 'FAD',
+                            createdAt: DateTime.now(),
+                            updatedAt: DateTime.now(),
                           );
-                          return DriverCard(driver: driver);
+                          return OrderCard(order: order);
                         },
                       ),
                     ),
