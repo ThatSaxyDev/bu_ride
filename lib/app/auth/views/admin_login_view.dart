@@ -1,13 +1,16 @@
+import 'package:bu_ride/app/dashboard/views/dashboard_view.dart';
+import 'package:bu_ride/routes.dart';
 import 'package:bu_ride/shared/app_extensions.dart';
 import 'package:bu_ride/shared/app_widgets/button.dart';
 import 'package:bu_ride/shared/app_widgets/text_input.dart';
 import 'package:bu_ride/theme/palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:the_responsive_builder/the_responsive_builder.dart';
 
 class AdminLoginView extends ConsumerStatefulWidget {
   const AdminLoginView({super.key});
+
+  static const String name = 'admin-login';
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _AdminLoginViewState();
@@ -33,9 +36,9 @@ class _AdminLoginViewState extends ConsumerState<AdminLoginView> {
             flex: 1,
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(24.dp),
-                  bottomRight: const Radius.circular(24),
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(24),
+                  bottomRight: Radius.circular(24),
                 ),
                 image: DecorationImage(
                   image: AssetImage('authBackground'.png),
@@ -99,7 +102,9 @@ class _AdminLoginViewState extends ConsumerState<AdminLoginView> {
                     ),
                     72.sbH(context),
                     BButton(
-                      onTap: () {},
+                      onTap: () {
+                        nav(DashboardView.name, context);
+                      },
                       width: double.infinity,
                       text: 'Enter',
                     ),

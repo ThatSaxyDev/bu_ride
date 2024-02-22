@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bu_ride/shared/app_extensions.dart';
 import "package:bu_ride/theme/palette.dart";
-import 'package:the_responsive_builder/the_responsive_builder.dart';
 
 class TextInputWidget extends StatelessWidget {
   final double? height;
@@ -82,7 +81,7 @@ class TextInputWidget extends StatelessWidget {
           children: [
             if (hastitle == true)
               inputTitle.txt(
-                size: 15.dp,
+                size: 15,
                 fontW: titleFontWeight ?? F.w5,
                 color: grey700,
               ),

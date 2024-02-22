@@ -359,13 +359,13 @@ extension StyledTextExtension20 on String {
 }
 
 extension ImagePath on String {
-  String get png => 'lib/assets/images/$this.png';
-  String get jpg => 'lib/assets/images/$this.jpg';
-  String get gif => 'lib/assets/images/$this.gif';
+  String get png => 'assets/images/$this.png';
+  String get jpg => 'assets/images/$this.jpg';
+  String get gif => 'assets/images/$this.gif';
 }
 
 extension SvgPath on String {
-  String get svg => 'lib/assets/svgs/$this.svg';
+  String get svg => 'assets/svgs/$this.svg';
 }
 
 extension ResponsiveExt on num {

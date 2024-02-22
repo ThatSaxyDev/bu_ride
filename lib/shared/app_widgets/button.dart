@@ -1,8 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:bu_ride/shared/app_extensions.dart';
+import 'package:bu_ride/shared/utils/loader.dart';
 import 'package:flutter/material.dart';
 import "package:bu_ride/theme/palette.dart";
+import 'package:flutter_animate/flutter_animate.dart';
 
 class BButton extends StatelessWidget {
   final double? height;
@@ -77,6 +79,179 @@ class BButton extends StatelessWidget {
                     ),
                   )
                 : item,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+//!
+class AnimatedButton extends StatelessWidget {
+  final double? height;
+  final double? width;
+  final double? loadingWidth;
+  final double? radius;
+  final void Function()? onTap;
+  final Widget content;
+  final Color? color;
+  final BoxBorder? border;
+  final bool isLoading;
+  final Color? loaderColor;
+  const AnimatedButton({
+    Key? key,
+    this.height,
+    this.loadingWidth,
+    this.width,
+    this.radius,
+    this.onTap,
+    required this.content,
+    this.color,
+    this.border,
+    required this.isLoading,
+    this.loaderColor,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      ignoring: isLoading,
+      child: InkWell(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        onTap: onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 700),
+          curve: Curves.fastOutSlowIn,
+          height: height ?? 65.rH(context),
+          width: isLoading
+              ? switch (loadingWidth == null) {
+                  true => 65.rH(context),
+                  false => loadingWidth,
+                }
+              : switch (width == null) {
+                  true => 600.rW(context),
+                  false => width,
+                },
+          decoration: BoxDecoration(
+              color: color ?? primaryBase,
+              borderRadius: BorderRadius.circular(
+                isLoading
+                    ? switch (loadingWidth == null) {
+                        true => 10,
+                        false => loadingWidth!,
+                      }
+                    : switch (width == null) {
+                        true => 20,
+                        false => 20,
+                      },
+              ),
+              border: border),
+          child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: SizedBox(
+                  width: isLoading
+                      ? switch (loadingWidth == null) {
+                          true => 65.rW(context),
+                          false => loadingWidth,
+                        }
+                      : switch (width == null) {
+                          true => 600.rW(context),
+                          false => width,
+                        },
+                  child: Center(
+                      child: isLoading
+                          ? Loadinggg(
+                              color: loaderColor ?? neutralWhite,
+                            ).fadeIn(delay: 800.ms)
+                          : content))),
+        ),
+      ),
+    );
+  }
+}
+
+class AnimatedButton2 extends StatelessWidget {
+  final double? height;
+  final double? width;
+  final double? loadingWidth;
+  final double? radius;
+  final void Function()? onTap;
+  final Widget content;
+  final Color? color;
+  final BoxBorder? border;
+  final bool isLoading;
+  final Color? loaderColor;
+  const AnimatedButton2({
+    Key? key,
+    this.height,
+    this.loadingWidth,
+    this.width,
+    this.radius,
+    this.onTap,
+    required this.content,
+    this.color,
+    this.border,
+    required this.isLoading,
+    this.loaderColor,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      ignoring: isLoading,
+      child: InkWell(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        onTap: onTap,
+        child: IgnorePointer(
+          ignoring: true,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 700),
+            curve: Curves.fastOutSlowIn,
+            height: height ?? 65.rH(context),
+            width: isLoading
+                ? switch (loadingWidth == null) {
+                    true => 65.rH(context),
+                    false => loadingWidth,
+                  }
+                : switch (width == null) {
+                    true => 600.rW(context),
+                    false => width,
+                  },
+            decoration: BoxDecoration(
+                color: color ?? primaryBlue,
+                borderRadius: BorderRadius.circular(
+                  isLoading
+                      ? switch (loadingWidth == null) {
+                          true => 10,
+                          false => loadingWidth!,
+                        }
+                      : switch (width == null) {
+                          true => 20,
+                          false => 20,
+                        },
+                ),
+                border: border),
+            child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                physics: const NeverScrollableScrollPhysics(),
+                child: SizedBox(
+                    width: isLoading
+                        ? switch (loadingWidth == null) {
+                            true => 65.rW(context),
+                            false => loadingWidth,
+                          }
+                        : switch (width == null) {
+                            true => 600.rW(context),
+                            false => width,
+                          },
+                    child: Center(
+                        child: isLoading
+                            ? Loadinggg(
+                                color: loaderColor ?? neutralWhite,
+                              ).fadeIn(delay: 800.ms)
+                            : content))),
           ),
         ),
       ),

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 //! main colors
+const backblue = Color(0xffF1F1F8);
+const offWhite = Color(0xffFEFEFE);
+const backk = Color(0xFFF8F9FA);
+
+const primaryBlue2 = Color(0xff02014A);
 const primaryBlue = Color(0xff020167);
 const neutralWhite = Color(0xffFFFFFF);
 const neutralBlack = Color(0xff000000);
@@ -11,7 +16,7 @@ const blueColor = Color(0xFF343892);
 const lighterBlueColor = Color(0xFF343892);
 const purpleColor = Color(0xFFD3D4FE);
 const lighterPurpleColor = Color(0xFFF1F2FF);
-const backG = Color(0xFFF1F1FF);
+const greyy = Color(0xFF575757);
 const numpadBlueGrey = Color(0xFFD2D4FD);
 
 //! transactions

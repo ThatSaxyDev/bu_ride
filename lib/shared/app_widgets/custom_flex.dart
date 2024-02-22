@@ -18,6 +18,14 @@ class CustomizableRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    assert(() {
+      if (numberOfChildren != null && flexValues != null) {
+        assert(numberOfChildren == flexValues!.length,
+            'Number of children and flexValues must match.');
+      }
+      return true;
+    }());
+
     return Padding(
       padding: padding ?? EdgeInsets.zero,
       child: Row(
@@ -48,6 +56,13 @@ class CustomizableColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    assert(() {
+      if (numberOfChildren != null && flexValues != null) {
+        assert(numberOfChildren == flexValues!.length,
+            'Number of children and flexValues must match.');
+      }
+      return true;
+    }());
     return Padding(
       padding: padding ?? EdgeInsets.zero,
       child: Column(
