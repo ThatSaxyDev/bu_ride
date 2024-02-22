@@ -9,6 +9,7 @@ class DriverModel {
   final String vatNumber;
   final DateTime dateJoined;
   final DateTime dateJUpdated;
+  final bool isAvailable;
 
   const DriverModel({
     required this.id,
@@ -18,6 +19,7 @@ class DriverModel {
     required this.vatNumber,
     required this.dateJoined,
     required this.dateJUpdated,
+    required this.isAvailable,
   });
 
   DriverModel copyWith({
@@ -28,6 +30,7 @@ class DriverModel {
     String? vatNumber,
     DateTime? dateJoined,
     DateTime? dateJUpdated,
+    bool? isAvailable,
   }) {
     return DriverModel(
       id: id ?? this.id,
@@ -37,12 +40,13 @@ class DriverModel {
       vatNumber: vatNumber ?? this.vatNumber,
       dateJoined: dateJoined ?? this.dateJoined,
       dateJUpdated: dateJUpdated ?? this.dateJUpdated,
+      isAvailable: isAvailable ?? this.isAvailable,
     );
   }
 
   @override
   String toString() {
-    return 'DriverModel(id: $id, firstName: $firstName, lastName: $lastName, emailAddress: $emailAddress, vatNumber: $vatNumber, dateJoined: $dateJoined, dateJUpdated: $dateJUpdated)';
+    return 'DriverModel(id: $id, firstName: $firstName, lastName: $lastName, emailAddress: $emailAddress, vatNumber: $vatNumber, dateJoined: $dateJoined, dateJUpdated: $dateJUpdated, isAvailable: $isAvailable)';
   }
 
   @override
@@ -55,7 +59,8 @@ class DriverModel {
         other.emailAddress == emailAddress &&
         other.vatNumber == vatNumber &&
         other.dateJoined == dateJoined &&
-        other.dateJUpdated == dateJUpdated;
+        other.dateJUpdated == dateJUpdated &&
+        other.isAvailable == isAvailable;
   }
 
   @override
@@ -66,7 +71,8 @@ class DriverModel {
         emailAddress.hashCode ^
         vatNumber.hashCode ^
         dateJoined.hashCode ^
-        dateJUpdated.hashCode;
+        dateJUpdated.hashCode ^
+        isAvailable.hashCode;
   }
 
   Map<String, dynamic> toMap() {
@@ -90,6 +96,7 @@ class DriverModel {
       vatNumber: (map["vatNumber"] ?? '') as String,
       dateJoined: DateTime.parse(map['dateJoined']),
       dateJUpdated: DateTime.parse(map['dateJUpdated']),
+      isAvailable: (map["isAvailable"] ?? false) as bool,
     );
   }
 

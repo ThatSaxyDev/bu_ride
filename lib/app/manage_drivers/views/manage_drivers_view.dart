@@ -1,3 +1,5 @@
+import 'package:bu_ride/app/dashboard/notifiers/dashboard_state_notifier.dart';
+import 'package:bu_ride/app/dashboard/providers/dashboard_providers.dart';
 import 'package:bu_ride/app/manage_drivers/widgets/driver_card.dart';
 import 'package:bu_ride/models/driver_model.dart';
 import 'package:bu_ride/shared/app_constants.dart';
@@ -12,6 +14,8 @@ class ManageDriversView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    DashboardStateNotifier dashboardStateNotifier =
+        ref.read(dashboardStateNotifierProvider.notifier);
     return SizedBox(
       height: height(context),
       child: SingleChildScrollView(
@@ -40,7 +44,9 @@ class ManageDriversView extends ConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         'Our Drivers'.txt18(fontWeight: FontWeight.w700),
-                        '+ Add Driver'.txt18()
+                        '+ Add Driver'.txt18().tap(onTap: () {
+                          dashboardStateNotifier.switchToPageIndex(4);
+                        })
                       ],
                     ),
                     const SizedBox(height: 28),
@@ -50,14 +56,14 @@ class ManageDriversView extends ConsumerWidget {
                         12,
                         (index) {
                           DriverModel driver = DriverModel(
-                            id: '',
-                            firstName: 'David',
-                            lastName: 'Dedeke',
-                            emailAddress: 'thatsaxydev@gmail.com',
-                            vatNumber: 'csdcwc3321w',
-                            dateJoined: DateTime.now(),
-                            dateJUpdated: DateTime.now(),
-                          );
+                              id: '',
+                              firstName: 'David',
+                              lastName: 'Dedeke',
+                              emailAddress: 'thatsaxydev@gmail.com',
+                              vatNumber: 'csdcwc3321w',
+                              dateJoined: DateTime.now(),
+                              dateJUpdated: DateTime.now(),
+                              isAvailable: true);
                           return DriverCard(driver: driver);
                         },
                       ),

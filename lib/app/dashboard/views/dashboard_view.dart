@@ -3,6 +3,7 @@ import 'package:bu_ride/app/auth/providers/auth_providers.dart';
 import 'package:bu_ride/app/dashboard/notifiers/dashboard_state_notifier.dart';
 import 'package:bu_ride/app/dashboard/providers/dashboard_providers.dart';
 import 'package:bu_ride/app/dashboard/widgets/side_nav.dart';
+import 'package:bu_ride/app/manage_drivers/views/add_driver_view.dart';
 import 'package:bu_ride/app/manage_drivers/views/manage_drivers_view.dart';
 import 'package:bu_ride/app/orders/views/orders_view.dart';
 import 'package:bu_ride/models/admin_midel.dart';
@@ -52,4 +53,5 @@ List<Widget> pages = [
   Center(
     child: 'settings'.txt(),
   ),
+  const AddDriverView(),
 ];
