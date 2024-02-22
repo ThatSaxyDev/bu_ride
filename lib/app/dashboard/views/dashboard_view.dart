@@ -10,10 +10,8 @@ import 'package:bu_ride/app/orders/views/orders_view.dart';
 import 'package:bu_ride/models/admin_midel.dart';
 import 'package:bu_ride/shared/app_constants.dart';
 import 'package:bu_ride/shared/app_extensions.dart';
-import 'package:bu_ride/shared/app_widgets/myicon.dart';
 import 'package:bu_ride/theme/palette.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DashboardView extends ConsumerStatefulWidget {

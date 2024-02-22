@@ -4,7 +4,6 @@ import 'package:bu_ride/shared/services/firebase_storage_service.dart';
 import 'package:bu_ride/shared/utils/failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fpdart/fpdart.dart';
 
 class AuthController extends StateNotifier<bool> {
   final AuthRepository _authRepository;

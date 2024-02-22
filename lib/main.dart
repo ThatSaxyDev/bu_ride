@@ -1,6 +1,4 @@
 import 'package:bu_ride/app/auth/providers/auth_providers.dart';
-import 'package:bu_ride/app/auth/views/admin_login_view.dart';
-import 'package:bu_ride/app/dashboard/views/dashboard_view.dart';
 import 'package:bu_ride/firebase_options.dart';
 import 'package:bu_ride/models/admin_midel.dart';
 import 'package:bu_ride/router.dart';

@@ -7,6 +7,7 @@ class DriverModel {
   final String lastName;
   final String emailAddress;
   final String vatNumber;
+  final String phoneNumber;
   final DateTime dateJoined;
   final DateTime dateJUpdated;
   final bool isAvailable;
@@ -17,6 +18,7 @@ class DriverModel {
     required this.lastName,
     required this.emailAddress,
     required this.vatNumber,
+    required this.phoneNumber,
     required this.dateJoined,
     required this.dateJUpdated,
     required this.isAvailable,
@@ -28,6 +30,7 @@ class DriverModel {
     String? lastName,
     String? emailAddress,
     String? vatNumber,
+    String? phoneNumber,
     DateTime? dateJoined,
     DateTime? dateJUpdated,
     bool? isAvailable,
@@ -38,6 +41,7 @@ class DriverModel {
       lastName: lastName ?? this.lastName,
       emailAddress: emailAddress ?? this.emailAddress,
       vatNumber: vatNumber ?? this.vatNumber,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
       dateJoined: dateJoined ?? this.dateJoined,
       dateJUpdated: dateJUpdated ?? this.dateJUpdated,
       isAvailable: isAvailable ?? this.isAvailable,
@@ -46,7 +50,7 @@ class DriverModel {
 
   @override
   String toString() {
-    return 'DriverModel(id: $id, firstName: $firstName, lastName: $lastName, emailAddress: $emailAddress, vatNumber: $vatNumber, dateJoined: $dateJoined, dateJUpdated: $dateJUpdated, isAvailable: $isAvailable)';
+    return 'DriverModel(id: $id, firstName: $firstName, lastName: $lastName, emailAddress: $emailAddress, vatNumber: $vatNumber, phoneNumber: $phoneNumber, dateJoined: $dateJoined, dateJUpdated: $dateJUpdated, isAvailable: $isAvailable)';
   }
 
   @override
@@ -58,6 +62,7 @@ class DriverModel {
         other.lastName == lastName &&
         other.emailAddress == emailAddress &&
         other.vatNumber == vatNumber &&
+        other.phoneNumber == phoneNumber &&
         other.dateJoined == dateJoined &&
         other.dateJUpdated == dateJUpdated &&
         other.isAvailable == isAvailable;
@@ -70,6 +75,7 @@ class DriverModel {
         lastName.hashCode ^
         emailAddress.hashCode ^
         vatNumber.hashCode ^
+        phoneNumber.hashCode ^
         dateJoined.hashCode ^
         dateJUpdated.hashCode ^
         isAvailable.hashCode;
@@ -82,6 +88,7 @@ class DriverModel {
       'lastName': lastName,
       'emailAddress': emailAddress,
       'vatNumber': vatNumber,
+      'phoneNumber': phoneNumber,
       'dateJoined': dateJoined.toString(),
       'dateJUpdated': dateJUpdated.toString(),
     };
@@ -93,6 +100,7 @@ class DriverModel {
       firstName: (map["firstName"] ?? '') as String,
       lastName: (map["lastName"] ?? '') as String,
       emailAddress: (map["emailAddress"] ?? '') as String,
+      phoneNumber: (map["phoneNumber"] ?? '') as String,
       vatNumber: (map["vatNumber"] ?? '') as String,
       dateJoined: DateTime.parse(map['dateJoined']),
       dateJUpdated: DateTime.parse(map['dateJUpdated']),

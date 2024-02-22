@@ -32,6 +32,7 @@ class ManageDriversStateNotifier extends Notifier<ManageDriversState> {
     required String firstName,
     required String lastName,
     required String email,
+    required String phone,
     required BuildContext context,
   }) async {
     if (firstName.isEmpty) {
@@ -60,6 +61,15 @@ class ManageDriversStateNotifier extends Notifier<ManageDriversState> {
       );
       return;
     }
+
+    if (phone.isEmpty) {
+      showBanner(
+        context: context,
+        theMessage: 'Phone number is required',
+        theType: NotificationType.failure,
+      );
+      return;
+    }
     String vatNumber = const Uuid().v1();
 
     DriverModel driver = DriverModel(
@@ -68,6 +78,7 @@ class ManageDriversStateNotifier extends Notifier<ManageDriversState> {
       lastName: lastName,
       emailAddress: email,
       vatNumber: vatNumber,
+      phoneNumber: phone,
       dateJoined: DateTime.now(),
       dateJUpdated: DateTime.now(),
       isAvailable: false,

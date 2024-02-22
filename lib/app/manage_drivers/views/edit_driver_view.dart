@@ -22,6 +22,7 @@ class _EditDriverViewState extends ConsumerState<EditDriverView> {
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emaailController = TextEditingController();
   final TextEditingController _vatController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
 
   DriverModel? driver;
 
@@ -32,6 +33,7 @@ class _EditDriverViewState extends ConsumerState<EditDriverView> {
         _firstNameController.text = driver!.firstName;
         _lastNameController.text = driver!.lastName;
         _emaailController.text = driver!.emailAddress;
+        _phoneController.text = driver!.phoneNumber;
         setState(() {});
       }
     });
@@ -107,6 +109,12 @@ class _EditDriverViewState extends ConsumerState<EditDriverView> {
                       hintText: '',
                       controller: _vatController,
                     ),
+                    36.sbH(context),
+                    TextInputWidget(
+                      inputTitle: 'Phone Number',
+                      hintText: '',
+                      controller: _phoneController,
+                    ),
                     50.sbH(context),
                     driversState.isLoading
                         ? const CircularProgressIndicator()
@@ -117,6 +125,7 @@ class _EditDriverViewState extends ConsumerState<EditDriverView> {
                                   emailAddress: _emaailController.text,
                                   firstName: _firstNameController.text,
                                   lastName: _lastNameController.text,
+                                  phoneNumber: _phoneController.text,
                                   dateJUpdated: DateTime.now(),
                                 ),
                                 context: context,

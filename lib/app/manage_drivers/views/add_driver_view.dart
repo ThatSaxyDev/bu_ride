@@ -20,6 +20,7 @@ class _AddDriverViewState extends ConsumerState<AddDriverView> {
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _emaailController = TextEditingController();
   final TextEditingController _vatController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +82,12 @@ class _AddDriverViewState extends ConsumerState<AddDriverView> {
                       hintText: '',
                       controller: _vatController,
                     ),
+                    36.sbH(context),
+                    TextInputWidget(
+                      inputTitle: 'Phone Number',
+                      hintText: '',
+                      controller: _phoneController,
+                    ),
                     50.sbH(context),
                     driversState.isLoading
                         ? const CircularProgressIndicator()
@@ -90,6 +97,7 @@ class _AddDriverViewState extends ConsumerState<AddDriverView> {
                                 firstName: _firstNameController.text,
                                 lastName: _lastNameController.text,
                                 email: _emaailController.text,
+                                phone: _phoneController.text,
                                 context: context,
                               );
                             },

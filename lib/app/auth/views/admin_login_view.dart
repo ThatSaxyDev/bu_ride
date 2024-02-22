@@ -1,6 +1,4 @@
 import 'package:bu_ride/app/auth/providers/auth_providers.dart';
-import 'package:bu_ride/app/dashboard/views/dashboard_view.dart';
-import 'package:bu_ride/router.dart';
 import 'package:bu_ride/shared/app_extensions.dart';
 import 'package:bu_ride/shared/app_widgets/button.dart';
 import 'package:bu_ride/shared/app_widgets/text_input.dart';

@@ -1,6 +1,4 @@
-import 'package:bu_ride/app/manage_drivers/widgets/driver_card.dart';
 import 'package:bu_ride/app/orders/widgets/order_card.dart';
-import 'package:bu_ride/models/driver_model.dart';
 import 'package:bu_ride/models/order_model.dart';
 import 'package:bu_ride/shared/app_constants.dart';
 import 'package:bu_ride/shared/app_extensions.dart';

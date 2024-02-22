@@ -74,13 +74,14 @@ class DriverCard extends ConsumerWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: List.generate(
-                3,
+                4,
                 (index) => CustomizableRow(
                   flexValues: const [1, 8],
                   children: [
                     (switch (index) {
                       0 => 'Full Name:',
                       1 => 'Email Address:',
+                      2 => 'Phone Number:',
                       _ => 'VAT Number:',
                     })
                         .txt(
@@ -89,6 +90,7 @@ class DriverCard extends ConsumerWidget {
                     (switch (index) {
                       0 => '${driver.firstName} ${driver.lastName}',
                       1 => driver.emailAddress,
+                      2 => driver.phoneNumber,
                       _ => driver.vatNumber,
                     })
                         .txt(size: 15, fontWeight: FontWeight.w700),
