@@ -62,7 +62,7 @@ AppBar customAppBar(
         : PreferredSize(
             preferredSize: const Size(327, 60),
             child: Padding(
-              padding: 24.padH,
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: bottom,
             )),
   );

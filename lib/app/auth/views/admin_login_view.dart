@@ -9,7 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class AdminLoginView extends ConsumerStatefulWidget {
   const AdminLoginView({super.key});
 
-  static const String name = 'admin-login';
+  static const String name = '/admin-login';
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _AdminLoginViewState();

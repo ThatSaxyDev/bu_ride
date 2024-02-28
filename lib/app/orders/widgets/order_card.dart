@@ -15,7 +15,7 @@ class OrderCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      height: 175.rH(context),
+      height: 200.rH(context),
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         vertical: 26.rH(context),

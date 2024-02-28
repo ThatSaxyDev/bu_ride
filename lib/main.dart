@@ -8,6 +8,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:routemaster/routemaster.dart';
 
 void main() async {
@@ -45,25 +47,38 @@ class _MyAppState extends ConsumerState<MyApp> {
     AsyncValue<User?> authStateChange = ref.watch(authStateChangeProvider);
     return authStateChange.when(
       data: (User? user) {
-        return MaterialApp.router(
-          title: 'BU Ride',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: primaryBlue),
-            useMaterial3: true,
-          ),
-          routerDelegate: RoutemasterDelegate(
-            routesBuilder: (context) {
-              if (user != null) {
-                getData(ref, user);
-                if (admin != null) {
-                  return loggedInRoute;
-                }
-              }
-              return loggedOutRoute;
-            },
-          ),
-          routeInformationParser: const RoutemasterParser(),
+        return ResponsiveApp(
+          builder: (p0) {
+            return ScreenUtilInit(
+              designSize: const Size(375, 812),
+              minTextAdapt: true,
+              splitScreenMode: false,
+              builder: (context, child) {
+                return Builder(builder: (context) {
+                  return MaterialApp.router(
+                    title: 'BU Ride',
+                    debugShowCheckedModeBanner: false,
+                    theme: ThemeData(
+                      colorScheme: ColorScheme.fromSeed(seedColor: primaryBlue),
+                      useMaterial3: true,
+                    ),
+                    routerDelegate: RoutemasterDelegate(
+                      routesBuilder: (context) {
+                        if (user != null) {
+                          getData(ref, user);
+                          if (admin != null) {
+                            return loggedInRoute;
+                          }
+                        }
+                        return loggedOutRoute;
+                      },
+                    ),
+                    routeInformationParser: const RoutemasterParser(),
+                  );
+                });
+              },
+            );
+          },
         );
       },
       error: (error, stactrace) => MaterialApp(

@@ -7,7 +7,9 @@ import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:flutter_animate/flutter_animate.dart";
+import "package:flutter_screenutil/flutter_screenutil.dart";
 import "package:intl/intl.dart";
+import "package:responsive_builder/responsive_builder.dart";
 // import 'package:url_launcher/url_launcher.dart' show launchUrl;
 
 //! LOG EXTENSION - THIS HELPS TO CALL A .log() ON ANY OBJECT
@@ -700,4 +702,63 @@ extension IgnorePointerExtension on Widget {
       child: this,
     );
   }
+}
+
+extension SpacingExtension on double {
+  SizedBox get hSpace {
+    return SizedBox(height: this);
+  }
+
+  SizedBox get wSpace {
+    return SizedBox(width: this);
+  }
+
+  SizedBox hSpaceW(double vertical) {
+    return SizedBox(height: screenHeight, width: vertical.screenWidth);
+  }
+}
+
+extension SpacingNumExtension on num {
+  SizedBox get hSpace {
+    return SizedBox(height: toDouble());
+  }
+
+  SizedBox get wSpace {
+    return SizedBox(width: toDouble());
+  }
+
+  SizedBox hSpaceW(double vertical) {
+    return SizedBox(height: toDouble(), width: vertical.toDouble());
+  }
+}
+
+
+extension SExtensionss on num {
+  Widget get sH => SizedBox(
+        height: h,
+      );
+
+  Widget get sW => SizedBox(
+        width: w,
+      );
+
+  EdgeInsetsGeometry get padV => EdgeInsets.symmetric(vertical: h);
+
+  EdgeInsetsGeometry get padH => EdgeInsets.symmetric(horizontal: w);
+}
+
+extension SSExtensionss on double {
+  Widget get sH => SizedBox(
+        height: h,
+      );
+
+  Widget get sW => SizedBox(
+        width: w,
+      );
+
+  EdgeInsetsGeometry get padA => EdgeInsets.all(this);
+
+  EdgeInsetsGeometry get padV => EdgeInsets.symmetric(vertical: h);
+
+  EdgeInsetsGeometry get padH => EdgeInsets.symmetric(horizontal: w);
 }

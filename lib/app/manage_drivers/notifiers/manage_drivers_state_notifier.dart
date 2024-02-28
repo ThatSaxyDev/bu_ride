@@ -86,7 +86,7 @@ class ManageDriversStateNotifier extends Notifier<ManageDriversState> {
 
     startLoading();
 
-    ref.read(manageDriversControllerProvider.notifier).addDriver(
+    await ref.read(manageDriversControllerProvider.notifier).addDriver(
           driver: driver,
           onError: (error) {
             stopLoading();

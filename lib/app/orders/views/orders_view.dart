@@ -1,3 +1,5 @@
+import 'package:bu_ride/app/manage_drivers/widgets/driver_card.dart';
+import 'package:bu_ride/app/orders/providers/order_providers.dart';
 import 'package:bu_ride/app/orders/widgets/order_card.dart';
 import 'package:bu_ride/models/order_model.dart';
 import 'package:bu_ride/shared/app_constants.dart';
@@ -44,25 +46,39 @@ class OrdersView extends ConsumerWidget {
                       ],
                     ),
                     const SizedBox(height: 28),
-                    SeparatedColumn(
-                      separatorBuilder: () => const SizedBox(height: 16),
-                      children: List.generate(
-                        12,
-                        (index) {
-                          OrderModel order = OrderModel(
-                            id: '',
-                            firstName: 'David',
-                            lastName: 'Dedeke',
-                            emailAddress: 'thatsaxydev@gmail.com',
-                            pickUpLocation: 'Bethel',
-                            destination: 'FAD',
-                            createdAt: DateTime.now(),
-                            updatedAt: DateTime.now(),
-                          );
-                          return OrderCard(order: order);
-                        },
-                      ),
-                    ),
+                    ref.watch(getOrdersProviderr).when(
+                          data: (data) {
+                            if (data.isEmpty) {
+                              return Column(
+                                children: [
+                                  20.sbH(context),
+                                  'No orders yet!'.txt20(),
+                                ],
+                              );
+                            }
+                            return SeparatedColumn(
+                              separatorBuilder: () =>
+                                  const SizedBox(height: 16),
+                              children: List.generate(
+                                data.length,
+                                (index) {
+                                  OrderModel order = data[index];
+                                  return OrderCard(order: order);
+                                },
+                              ),
+                            );
+                          },
+                          error: (e, s) => 'error'.txt(),
+                          loading: () => SeparatedColumn(
+                            separatorBuilder: () => const SizedBox(height: 16),
+                            children: List.generate(
+                              6,
+                              (index) {
+                                return const CardSkel();
+                              },
+                            ),
+                          ),
+                        ),
                   ],
                 ),
               ),

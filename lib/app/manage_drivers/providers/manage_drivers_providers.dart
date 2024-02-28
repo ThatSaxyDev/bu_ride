@@ -25,12 +25,12 @@ final manageDriversNotifierProvider =
   return ManageDriversStateNotifier();
 });
 
-//! gwt drivers future provider
-final getDriversProvider = FutureProvider((ref) async {
-  final manageDriversController =
-      ref.watch(manageDriversControllerProvider.notifier);
-  return manageDriversController.getAllDriversF();
-});
+// //! gwt drivers future provider
+// final getDriversProvider = FutureProvider((ref) async {
+//   final manageDriversController =
+//       ref.watch(manageDriversControllerProvider.notifier);
+//   return manageDriversController.getAllDriversF();
+// });
 
 final getDriversProviderr = StreamProvider((ref) {
   final manageDriversController =

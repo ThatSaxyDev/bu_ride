@@ -1,5 +1,6 @@
 import 'package:bu_ride/app/auth/views/admin_login_view.dart';
 import 'package:bu_ride/app/dashboard/views/dashboard_view.dart';
+import 'package:bu_ride/app/orders/views/order_ride_view.dart';
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
 
@@ -11,6 +12,9 @@ void nav(String destination, BuildContext context) {
 final loggedOutRoute = RouteMap(
   routes: {
     '/': (_) => const MaterialPage(
+          child: OrderRideView(),
+        ),
+    AdminLoginView.name: (_) => const MaterialPage(
           child: AdminLoginView(),
         ),
   },

@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:bu_ride/shared/app_extensions.dart';
 import "package:bu_ride/theme/palette.dart";
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class TextInputWidget extends StatelessWidget {
   final double? height;
+  final double? fieldHeight;
   final double? width;
-  final String inputTitle;
   final String hintText;
-  final bool hastitle;
-  final bool? filled;
-  final bool readOnly;
-  final Color? fillColor;
+  final String inputTitle;
   final TextEditingController controller;
   final bool obscuretext;
   final FormFieldValidator<String>? validator;
@@ -22,27 +21,26 @@ class TextInputWidget extends StatelessWidget {
   final FocusNode? focusNode;
   final TextInputType? keyboardType;
   final void Function(String)? onChanged;
-  final void Function(String?)? onSaved;
   final List<TextInputFormatter>? inputFormatters;
   final Color? titleColor;
   final Color? borderColor;
-  final F? titleFontWeight;
+  final FontWeight? titleFontWeight;
   final void Function()? onTap;
   final void Function(PointerDownEvent)? onTapOutside;
   final Widget? iconn;
   final int? maxLength;
+  final void Function()? onEditingComplete;
+  final TextCapitalization? textCapitalization;
+  final bool? readOnly;
+  final bool? autofocus;
   final int? maxLines;
-  final Widget? cardIcon;
   const TextInputWidget({
     Key? key,
     this.height,
+    this.fieldHeight,
     this.width,
-    required this.inputTitle,
     required this.hintText,
-    this.hastitle = true,
-    this.filled,
-    this.readOnly = false,
-    this.fillColor,
+    required this.inputTitle,
     required this.controller,
     this.obscuretext = false,
     this.validator,
@@ -52,7 +50,6 @@ class TextInputWidget extends StatelessWidget {
     this.focusNode,
     this.keyboardType,
     this.onChanged,
-    this.onSaved,
     this.inputFormatters,
     this.titleColor,
     this.borderColor,
@@ -61,8 +58,11 @@ class TextInputWidget extends StatelessWidget {
     this.onTapOutside,
     this.iconn,
     this.maxLength,
+    this.onEditingComplete,
+    this.textCapitalization,
+    this.readOnly,
+    this.autofocus,
     this.maxLines,
-    this.cardIcon,
   }) : super(key: key);
 
   @override
@@ -72,25 +72,34 @@ class TextInputWidget extends StatelessWidget {
       highlightColor: Colors.transparent,
       onTap: onTap,
       child: SizedBox(
-        // color: Colors.red,
-        height: hastitle ? 130.rH(context) : 76.rH(context),
+        height: height ??
+            getValueForScreenType(context: context, mobile: 70.h, desktop: 75),
         width: width ?? double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            if (hastitle == true)
-              inputTitle.txt(
-                size: 15,
-                fontW: titleFontWeight ?? F.w5,
-                color: grey700,
+            Text(
+              inputTitle,
+              style: TextStyle(
+                color: titleColor ?? const Color(0xFF6B7280),
+                fontSize: getValueForScreenType(
+                    context: context, mobile: 16, desktop: 18),
+                fontWeight: titleFontWeight,
+                height: 1.43,
               ),
+            ),
             SizedBox(
-              height: 76.rH(context),
+              height: fieldHeight ??
+                  getValueForScreenType(
+                      context: context, mobile: 44.h, desktop: 44),
               child: TextFormField(
-                textInputAction: TextInputAction.done,
-                readOnly: readOnly,
                 maxLines: maxLines,
+                autofocus: autofocus ?? false,
+                readOnly: readOnly ?? false,
+                textCapitalization:
+                    textCapitalization ?? TextCapitalization.none,
+                onEditingComplete: onEditingComplete,
                 maxLength: maxLength,
                 onTap: onTap,
                 onTapOutside: onTapOutside,
@@ -98,23 +107,31 @@ class TextInputWidget extends StatelessWidget {
                 focusNode: focusNode,
                 onFieldSubmitted: onFieldSubmitted,
                 onChanged: onChanged,
-                onSaved: onSaved,
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: grey900,
+                style: TextStyle(
+                  color: const Color(0xFF111827),
+                  fontSize: getValueForScreenType(
+                      context: context, mobile: 14.sp, desktop: 18),
+                  fontWeight: FontWeight.w500,
+                  height: 1.43,
                 ),
                 controller: controller,
                 inputFormatters: inputFormatters,
                 obscureText: obscuretext,
                 obscuringCharacter: '*',
                 cursorColor: Colors.black,
-                cursorHeight: 16.rH(context),
                 decoration: InputDecoration(
-                  filled: filled,
-                  fillColor: fillColor,
+                  fillColor: const Color(0xFFF2F4F7),
+                  filled: true,
                   // isDense: true,
                   suffix: suffix,
-                  contentPadding: const EdgeInsets.only(left: 16),
+                  contentPadding: getValueForScreenType(
+                    context: context,
+                    mobile: EdgeInsets.symmetric(vertical: 10.h)
+                        .copyWith(left: 12.w),
+                    desktop: const EdgeInsets.symmetric(vertical: 10)
+                        .copyWith(left: 12),
+                  ),
+
                   helperText: " ",
                   helperStyle: const TextStyle(fontSize: 0.0005),
                   errorStyle: const TextStyle(fontSize: 0.0005),
@@ -122,29 +139,32 @@ class TextInputWidget extends StatelessWidget {
                   suffixIconConstraints:
                       const BoxConstraints(minHeight: 20, minWidth: 20),
                   hintText: hintText,
-                  hintStyle: const TextStyle(
-                    color: grey500,
-                    fontSize: 16,
+                  hintStyle: TextStyle(
+                    color: const Color(0xFF9CA3AF),
+                    fontSize: getValueForScreenType(
+                        context: context, mobile: 14.sp, desktop: 18),
+                    fontWeight: FontWeight.w500,
+                    height: 1.43,
                   ),
                   border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: grey200),
-                    borderRadius: BorderRadius.circular(15),
+                    borderSide: const BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(4),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: grey200),
-                    borderRadius: BorderRadius.circular(15),
+                    borderSide: const BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(4),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: grey200),
-                    borderRadius: BorderRadius.circular(15),
+                    borderSide: const BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(4),
                   ),
                   errorBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: grey200),
-                    borderRadius: BorderRadius.circular(15),
+                    borderSide: const BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(4),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: grey200),
-                    borderRadius: BorderRadius.circular(15),
+                    borderSide: const BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(4),
                   ),
                 ),
                 validator: validator,

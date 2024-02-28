@@ -33,6 +33,9 @@ dependencies:
   cloud_firestore: ^4.15.4
   firebase_auth: ^4.17.4
   uuid: ^4.3.3
+  responsive_builder: ^0.7.0
+  flutter_screenutil: ^5.9.0
+  cool_dropdown: ^2.1.0
 
 dev_dependencies:
   flutter_test:

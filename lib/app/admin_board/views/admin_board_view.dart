@@ -1,5 +1,7 @@
 import 'package:bu_ride/app/admin_board/widgets/calendar/date_picker_config.dart';
 import 'package:bu_ride/app/admin_board/widgets/calendar/flutter_neat_and_clean_calendar.dart';
+import 'package:bu_ride/app/manage_drivers/providers/manage_drivers_providers.dart';
+import 'package:bu_ride/app/orders/providers/order_providers.dart';
 import 'package:bu_ride/shared/app_constants.dart';
 import 'package:bu_ride/shared/app_extensions.dart';
 import 'package:bu_ride/shared/app_widgets/custom_flex.dart';
@@ -102,15 +104,20 @@ class AdminBoardView extends ConsumerWidget {
                                 fontWeight: FontWeight.w700,
                               ),
                               10.sbH(context),
-                              RichText(
-                                text: const TextSpan(
-                                  text: '10',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700,
+                              ref.watch(getOrdersProviderr).when(
+                                    data: (data) => data.length.toString().txt(
+                                          size: 16,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                    error: (e, s) => '--'.txt(
+                                      size: 16,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                    loading: () => '--'.txt(
+                                      size: 16,
+                                      fontWeight: FontWeight.w700,
+                                    ),
                                   ),
-                                ),
-                              ),
                             ],
                           ),
                           Image.asset(
@@ -216,7 +223,17 @@ class AdminBoardView extends ConsumerWidget {
                                     ],
                                   ),
                                   const SizedBox(height: 5.5),
-                                  '2000'.txt(
+                                  (switch (index) {
+                                    0 => '1000',
+                                    1 => '2000',
+                                    _ => ref.watch(getDriversProviderr).when(
+                                          data: (data) =>
+                                              data.length.toString(),
+                                          error: (e, s) => '----',
+                                          loading: () => '----',
+                                        ),
+                                  })
+                                      .txt(
                                     size: 18,
                                     fontWeight: FontWeight.w700,
                                     color: greyy,

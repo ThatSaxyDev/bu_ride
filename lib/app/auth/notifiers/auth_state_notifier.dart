@@ -19,7 +19,7 @@ class AuthStateNotifier extends Notifier<AuthState> {
   }
 
   //! SIGN UP
-  Future<void> signUpAdmin({
+  void signUpAdmin({
     required String email,
     required String password,
     required BuildContext context,
