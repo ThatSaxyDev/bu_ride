@@ -118,7 +118,7 @@ class ManageDriversStateNotifier extends Notifier<ManageDriversState> {
   }) async {
     startLoading();
 
-    ref.read(manageDriversControllerProvider.notifier).deleteDriver(
+    await ref.read(manageDriversControllerProvider.notifier).deleteDriver(
           driver: driver,
           onError: (error) {
             stopLoading();

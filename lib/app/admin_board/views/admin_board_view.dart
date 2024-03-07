@@ -6,8 +6,10 @@ import 'package:bu_ride/shared/app_constants.dart';
 import 'package:bu_ride/shared/app_extensions.dart';
 import 'package:bu_ride/shared/app_widgets/custom_flex.dart';
 import 'package:bu_ride/theme/palette.dart';
+import 'package:flextras/flextras.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class AdminBoardView extends ConsumerWidget {
   const AdminBoardView({super.key});
@@ -17,7 +19,7 @@ class AdminBoardView extends ConsumerWidget {
     return SizedBox(
       height: height(context),
       child: SingleChildScrollView(
-        padding: EdgeInsets.only(left: 36.rW(context)),
+        padding: const EdgeInsets.only(left: 36),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Column(
@@ -34,9 +36,9 @@ class AdminBoardView extends ConsumerWidget {
               Row(
                 children: [
                   Container(
-                    height: 110.rH(context),
-                    width: 473.rW(context),
-                    padding: EdgeInsets.symmetric(horizontal: 21.rW(context)),
+                    height: 110,
+                    width: 473,
+                    padding: const EdgeInsets.symmetric(horizontal: 21),
                     decoration: BoxDecoration(
                       color: neutralWhite,
                       borderRadius: BorderRadius.circular(10),
@@ -47,36 +49,39 @@ class AdminBoardView extends ConsumerWidget {
                         children: [
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              'Today\'s users'.txt(
+                              'Total users'.txt(
                                 size: 12,
                                 fontWeight: FontWeight.w700,
                               ),
                               10.sbH(context),
-                              RichText(
-                                text: const TextSpan(
-                                  text: '2500',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                  children: [
-                                    TextSpan(
-                                      text: ' +5%',
-                                      style: TextStyle(
-                                          fontSize: 14,
+                              ref.watch(getStudentsProviderr).when(
+                                    data: (data) => data.length.toString().txt(
+                                          size: 16,
                                           fontWeight: FontWeight.w700,
-                                          color: greenColor),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                                        ),
+                                    error: (e, s) {
+                                      e.log();
+                                      return '--'.txt(
+                                        size: 16,
+                                        fontWeight: FontWeight.w700,
+                                      );
+                                    },
+                                    loading: () {
+                                      'dre v'.log();
+                                      return '--'.txt(
+                                        size: 16,
+                                        fontWeight: FontWeight.w700,
+                                      );
+                                    },
+                                  ),
                             ],
                           ),
                           Image.asset(
                             'today'.png,
-                            height: 58.rH(context),
-                            width: 55.rW(context),
+                            height: 58,
+                            width: 55,
                           ),
                         ],
                       ),
@@ -84,9 +89,9 @@ class AdminBoardView extends ConsumerWidget {
                   ),
                   24.sbW(context),
                   Container(
-                    height: 110.rH(context),
-                    width: 473.rW(context),
-                    padding: EdgeInsets.symmetric(horizontal: 21.rW(context)),
+                    height: 110,
+                    width: 473,
+                    padding: const EdgeInsets.symmetric(horizontal: 21),
                     decoration: BoxDecoration(
                       color: neutralWhite,
                       borderRadius: BorderRadius.circular(10),
@@ -122,8 +127,8 @@ class AdminBoardView extends ConsumerWidget {
                           ),
                           Image.asset(
                             'totalrides'.png,
-                            height: 58.rH(context),
-                            width: 55.rW(context),
+                            height: 58,
+                            width: 55,
                           ),
                         ],
                       ),
@@ -136,14 +141,14 @@ class AdminBoardView extends ConsumerWidget {
                 children: [
                   //! graph
                   Container(
-                    height: 441.rH(context),
-                    width: 629.rW(context),
-                    margin: EdgeInsets.only(right: 24.rW(context)),
-                    padding: EdgeInsets.only(
-                      top: 16.rH(context),
-                      bottom: 16.rH(context),
-                      right: 16.rW(context),
-                      left: 16.rW(context),
+                    height: 441,
+                    width: 629,
+                    margin: const EdgeInsets.only(right: 24),
+                    padding: const EdgeInsets.only(
+                      top: 16,
+                      bottom: 16,
+                      right: 16,
+                      left: 16,
                     ),
                     decoration: ShapeDecoration(
                       color: Colors.white,
@@ -155,14 +160,42 @@ class AdminBoardView extends ConsumerWidget {
                       child: Column(
                         children: [
                           Container(
-                            height: 222.rH(context),
+                            height: 222,
                             width: double.infinity,
                             margin: const EdgeInsets.only(bottom: 24),
+                            padding: const EdgeInsets.all(16).copyWith(right: 32),
                             decoration: ShapeDecoration(
                               color: primaryBlue,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: List.generate(
+                                  8,
+                                  (index) => switch (index) {
+                                        0 => Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: List.generate(
+                                                6,
+                                                (index) => (500 - index * 100)
+                                                    .toString()
+                                                    .txt(color: neutralWhite)),
+                                          ),
+                                        _ => Container(
+                                            height: index.toDouble() * 20,
+                                            width: 10,
+                                            decoration: BoxDecoration(
+                                              color: neutralWhite,
+                                              borderRadius:
+                                                  BorderRadius.circular(7),
+                                            ),
+                                          ).alignBottomCenter()
+                                      }),
                             ),
                           ),
                           'Active Users'
@@ -198,7 +231,7 @@ class AdminBoardView extends ConsumerWidget {
                             ),
                           ).alignCenterLeft(),
                           // const Spacer(),
-                          SizedBox(height: 40.rH(context)),
+                          const SizedBox(height: 40),
                           CustomizableRow(
                             flexValues: const [1, 1, 1],
                             children: List.generate(

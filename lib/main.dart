@@ -7,6 +7,7 @@ import 'package:bu_ride/theme/palette.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_portal/flutter_portal.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -39,6 +40,7 @@ class _MyAppState extends ConsumerState<MyApp> {
     ref
         .read(userDataControllerProvider.notifier)
         .setUserData(currentPayload: admin!);
+
     setState(() {});
   }
 
@@ -55,25 +57,30 @@ class _MyAppState extends ConsumerState<MyApp> {
               splitScreenMode: false,
               builder: (context, child) {
                 return Builder(builder: (context) {
-                  return MaterialApp.router(
-                    title: 'BU Ride',
-                    debugShowCheckedModeBanner: false,
-                    theme: ThemeData(
-                      colorScheme: ColorScheme.fromSeed(seedColor: primaryBlue),
-                      useMaterial3: true,
-                    ),
-                    routerDelegate: RoutemasterDelegate(
-                      routesBuilder: (context) {
-                        if (user != null) {
-                          getData(ref, user);
-                          if (admin != null) {
-                            return loggedInRoute;
+                  return Portal(
+                    child: MaterialApp.router(
+                      title: 'BU Ride',
+                      debugShowCheckedModeBanner: false,
+                      theme: ThemeData(
+                        colorScheme:
+                            ColorScheme.fromSeed(seedColor: primaryBlue),
+                        useMaterial3: true,
+                      ),
+                      routerDelegate: RoutemasterDelegate(
+                        routesBuilder: (context) {
+                          if (user != null) {
+                            getData(ref, user);
+                            if (admin != null) {
+                              return loggedInRoute;
+                            } else {
+                              return loggedOutRoute;
+                            }
                           }
-                        }
-                        return loggedOutRoute;
-                      },
+                          return loggedOutRoute;
+                        },
+                      ),
+                      routeInformationParser: const RoutemasterParser(),
                     ),
-                    routeInformationParser: const RoutemasterParser(),
                   );
                 });
               },

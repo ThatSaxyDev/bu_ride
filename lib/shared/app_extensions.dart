@@ -467,6 +467,7 @@ extension InkWellExtension on Widget {
   InkWell tap({
     required GestureTapCallback? onTap,
     GestureTapCallback? onDoubleTap,
+    Function(bool)? onHover,
     GestureLongPressCallback? onLongPress,
     BorderRadius? borderRadius,
     Color? splashColor = Colors.transparent,
@@ -479,6 +480,7 @@ extension InkWellExtension on Widget {
       borderRadius: borderRadius ?? BorderRadius.circular(12),
       splashColor: splashColor,
       highlightColor: highlightColor,
+      onHover: onHover,
       child: this,
     );
   }

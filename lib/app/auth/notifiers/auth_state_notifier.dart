@@ -1,4 +1,5 @@
 import 'package:bu_ride/app/auth/providers/auth_providers.dart';
+import 'package:bu_ride/models/admin_midel.dart';
 import 'package:bu_ride/shared/utils/failure.dart';
 import 'package:bu_ride/shared/utils/regex.dart';
 import 'package:bu_ride/shared/utils/snack_bar.dart';
@@ -148,6 +149,43 @@ class AuthStateNotifier extends Notifier<AuthState> {
         stopLoading();
       },
     );
+  }
+
+  //! edit Admin
+  Future<void> editAdmin({
+    required String fullname,
+    required String username,
+    required String phoneNumber,
+    required String bio,
+    required BuildContext context,
+  }) async {
+    startLoading();
+    AdminModel admin = ref.read(userDataControllerProvider.notifier).user!;
+    await ref.read(authControllerProvider.notifier).editadmin(
+          admin: admin.copyWith(
+            fullName: fullname,
+            userName: username,
+            phoneNumber: phoneNumber,
+            bio: bio,
+          ),
+          onError: (Failure error) {
+            stopLoading();
+            showBanner(
+              context: context,
+              theMessage: error.message,
+              theType: NotificationType.failure,
+            );
+          },
+          onSuccess: () {
+            stopLoading();
+            showBanner(
+              context: context,
+              theMessage: 'User details updated',
+              theType: NotificationType.success,
+            );
+            ref.read(authControllerProvider.notifier).getUSer();
+          },
+        );
   }
 }
 

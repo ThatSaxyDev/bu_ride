@@ -1,5 +1,6 @@
 import 'package:bu_ride/app/auth/notifiers/user_data_controller.dart';
 import 'package:bu_ride/app/auth/repositories/auth_repository.dart';
+import 'package:bu_ride/models/admin_midel.dart';
 import 'package:bu_ride/shared/services/firebase_storage_service.dart';
 import 'package:bu_ride/shared/utils/failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -76,5 +77,25 @@ class AuthController extends StateNotifier<bool> {
         onSuccess!();
       },
     );
+  }
+
+  //! edit admin
+  Future<void> editadmin({
+    required AdminModel admin,
+    required void Function(Failure)? onError,
+    required void Function()? onSuccess,
+  }) async {
+    final res = await _authRepository.editAdmin(admin: admin);
+
+    res.fold(
+      (l) => onError!(l),
+      (r) => onSuccess!(),
+    );
+  }
+
+  void getUSer() async {
+    AdminModel res =
+        await _authRepository.getUserData(_userDataController.user!.id).first;
+    _userDataController.setUserData(currentPayload: res);
   }
 }

@@ -36,6 +36,9 @@ dependencies:
   responsive_builder: ^0.7.0
   flutter_screenutil: ^5.9.0
   cool_dropdown: ^2.1.0
+  universal_html: ^2.2.4
+  flutter_portal: ^1.1.4
+  gap: ^3.0.1
 
 dev_dependencies:
   flutter_test:

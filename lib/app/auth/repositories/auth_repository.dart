@@ -90,6 +90,17 @@ class AuthRepository {
         (event) => AdminModel.fromMap(event.data() as Map<String, dynamic>));
   }
 
+  //! edit admin
+  FutureVoid editAdmin({required AdminModel admin}) async {
+    try {
+      return right(_admins.doc(admin.id).update(admin.toMap()));
+    } on FirebaseException catch (e) {
+      throw e.message!;
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
+
   //! LOG OUT
   FutureVoid logOut() async {
     try {

@@ -147,23 +147,28 @@ class TextInputWidget extends StatelessWidget {
                     height: 1.43,
                   ),
                   border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.transparent),
+                    borderSide:
+                        BorderSide(color: borderColor ?? Colors.transparent),
                     borderRadius: BorderRadius.circular(4),
                   ),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.transparent),
+                    borderSide:
+                        BorderSide(color: borderColor ?? Colors.transparent),
                     borderRadius: BorderRadius.circular(4),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.transparent),
+                    borderSide:
+                        BorderSide(color: borderColor ?? Colors.transparent),
                     borderRadius: BorderRadius.circular(4),
                   ),
                   errorBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.transparent),
+                    borderSide:
+                        BorderSide(color: borderColor ?? Colors.transparent),
                     borderRadius: BorderRadius.circular(4),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.transparent),
+                    borderSide:
+                        BorderSide(color: borderColor ?? Colors.transparent),
                     borderRadius: BorderRadius.circular(4),
                   ),
                 ),

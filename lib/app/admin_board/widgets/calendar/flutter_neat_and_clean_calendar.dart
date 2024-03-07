@@ -751,8 +751,8 @@ class _CalendarState extends State<Calendar> {
       });
     }
     return Container(
-      height: 441.rH(context),
-      width: 328.rW(context),
+      height: 441,
+      width: 328,
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
       decoration: ShapeDecoration(
         color: Colors.white,

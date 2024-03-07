@@ -53,6 +53,8 @@ class _OrderRideViewState extends ConsumerState<OrderRideView> {
     _firstNameController.text = prefs.getString('BU_RIDE_FN') ?? '';
     _lastNameController.text = prefs.getString('BU_RIDE_LN') ?? '';
     _emailController.text = prefs.getString('BU_RIDE_EM') ?? '';
+
+    prefs.getString('BU_RIDE_FN').toString().log();
   }
 
   @override
@@ -324,7 +326,8 @@ class _OrderRideViewState extends ConsumerState<OrderRideView> {
                     padding: const EdgeInsets.all(8.0),
                     child: BButton(
                       onTap: () {
-                        nav(AdminLoginView.name, context);
+                        // nav(AdminLoginView.name, context);
+                        ref.read(navnavProvider.notifier).goToLogin();
                       },
                       color: neutralWhite,
                       height: 30,

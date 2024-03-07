@@ -91,4 +91,53 @@ class OrderRepository {
         )
         .toList());
   }
+
+  Stream<List<OrderModel>> getAllOrdersDatePlaced() {
+    return _orders.snapshots().map((event) => event.docs
+        .map(
+          (e) => OrderModel.fromMap(e.data() as Map<String, dynamic>),
+        )
+        .toList());
+  }
+
+  //! get all students
+  Stream<List<StudentModel>> getAllStudents() {
+    return _students.snapshots().map((event) => event.docs
+        .map(
+          (e) => StudentModel.fromMap(e.data() as Map<String, dynamic>),
+        )
+        .toList());
+  }
+
+  Stream<List<StudentModel>> getStudentsWithDateJoined(
+      {required DateTime dateJoined}) {
+    return _students.where('dateJoined', isEqualTo: dateJoined).snapshots().map(
+        (querySnapshot) => querySnapshot.docs
+            .map((doc) =>
+                StudentModel.fromMap(doc.data() as Map<String, dynamic>))
+            .toList());
+  }
+
+  //! edit an order
+  FutureVoid editOrder({required OrderModel order}) async {
+    try {
+      return right(_orders.doc(order.id).update(order.toMap()));
+    } on FirebaseException catch (e) {
+      throw e.message!;
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
+
+  //! delete an order
+  FutureVoid deleteOrder({required OrderModel order}) async {
+    try {
+      await _orders.doc(order.id).delete();
+      return right(null);
+    } on FirebaseException catch (e) {
+      throw e.message!;
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
 }

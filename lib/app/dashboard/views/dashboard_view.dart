@@ -7,6 +7,7 @@ import 'package:bu_ride/app/manage_drivers/views/add_driver_view.dart';
 import 'package:bu_ride/app/manage_drivers/views/edit_driver_view.dart';
 import 'package:bu_ride/app/manage_drivers/views/manage_drivers_view.dart';
 import 'package:bu_ride/app/orders/views/orders_view.dart';
+import 'package:bu_ride/app/settings/views/settings_views.dart';
 import 'package:bu_ride/models/admin_midel.dart';
 import 'package:bu_ride/shared/app_constants.dart';
 import 'package:bu_ride/shared/app_extensions.dart';
@@ -49,9 +50,7 @@ List<Widget> pages = [
   const AdminBoardView(),
   const OrdersView(),
   const ManageDriversView(),
-  Center(
-    child: 'settings'.txt(),
-  ),
+  const SettingsViews(),
   const AddDriverView(),
   const EditDriverView(),
 ];

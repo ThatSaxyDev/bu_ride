@@ -36,3 +36,14 @@ final getOrdersProviderr = StreamProvider((ref) {
   final orderController = ref.watch(orderControllerProvider);
   return orderController.getAllOrders();
 });
+
+final getStudentsProviderr = StreamProvider((ref) {
+  final orderController = ref.watch(orderControllerProvider);
+  return orderController.getAllStudents();
+});
+
+final getStudentsWithDateProviderr =
+    StreamProvider.family((ref, DateTime dateJoined) {
+  final orderController = ref.watch(orderControllerProvider);
+  return orderController.getStudentsWithDateJoined(dateJoined: dateJoined);
+});
