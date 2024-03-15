@@ -1,4 +1,5 @@
 import 'package:bu_ride/models/admin_midel.dart';
+import 'package:bu_ride/shared/app_extensions.dart';
 import 'package:bu_ride/shared/constants/constants.dart';
 import 'package:bu_ride/shared/constants/firebase_constants.dart';
 import 'package:bu_ride/shared/utils/failure.dart';
@@ -78,7 +79,10 @@ class AuthRepository {
 
       return right(admin);
     } on FirebaseAuthException catch (e) {
-      return left(Failure(e.message!));
+      e.message!.log();
+      return left(Failure(e.message!.contains('incorrect')
+          ? 'Invalid email or password'
+          : e.message!));
     } catch (e) {
       return left(Failure(e.toString()));
     }

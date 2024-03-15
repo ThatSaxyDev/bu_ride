@@ -82,6 +82,15 @@ class AuthStateNotifier extends Notifier<AuthState> {
     required String password,
     required BuildContext context,
   }) async {
+    if (email.isEmpty || password.isEmpty) {
+      showBanner(
+        context: context,
+        theMessage: 'Please input valid details',
+        theType: NotificationType.failure,
+      );
+      return;
+    }
+
     if (!AppRegEx.regexEmail.hasMatch(email)) {
       showBanner(
         context: context,

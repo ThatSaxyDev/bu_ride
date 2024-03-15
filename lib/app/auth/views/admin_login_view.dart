@@ -86,21 +86,21 @@ class _AdminLoginViewState extends ConsumerState<AdminLoginView> {
                       hintText: '********',
                       controller: _passwordController,
                     ),
-                    36.sbH(context),
+                    // 36.sbH(context),
 
-                    Row(
-                      children: [
-                        Switch(value: true, onChanged: (newValue) {}),
-                        12.9.sbW(context),
-                        'Remember me'.txt(size: 16),
-                        const Spacer(),
-                        'Forgot Password?'.txt(
-                          size: 16,
-                          color: primaryBlue,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ],
-                    ),
+                    // Row(
+                    //   children: [
+                    //     Switch(value: true, onChanged: (newValue) {}),
+                    //     12.9.sbW(context),
+                    //     'Remember me'.txt(size: 16),
+                    //     const Spacer(),
+                    //     'Forgot Password?'.txt(
+                    //       size: 16,
+                    //       color: primaryBlue,
+                    //       fontWeight: FontWeight.w500,
+                    //     ),
+                    //   ],
+                    // ),
                     72.sbH(context),
                     authState.isLoading
                         ? const Center(
