@@ -58,13 +58,18 @@ class _SettingsViewsState extends ConsumerState<SettingsViews> {
 
   @override
   Widget build(BuildContext context) {
-    AdminModel admin = ref.watch(userDataControllerProvider.notifier).user!;
+    AdminModel? admin = ref.watch(userDataControllerProvider.notifier).user;
+    if (admin == null) {
+      return const SizedBox.shrink();
+    }
+
     _fullNameController.text = admin.fullName;
     _userNameController.text = admin.userName;
     _emaailController.text = admin.emailAddress;
     _phoneController.text = admin.phoneNumber;
     final authState = ref.watch(authStateNotifierProvider);
     final authStateNotifier = ref.read(authStateNotifierProvider.notifier);
+
     return SizedBox(
       height: height(context),
       child: SingleChildScrollView(
@@ -166,6 +171,18 @@ class _SettingsViewsState extends ConsumerState<SettingsViews> {
                         );
                       },
                       text: 'Update Profile',
+                    ),
+              const Gap(65),
+              authState.isLoading
+                  ? const CircularProgressIndicator()
+                  : BButton(
+                      width: 100,
+                      height: 40,
+                      color: redColor,
+                      onTap: () {
+                        authStateNotifier.logOut(context: context);
+                      },
+                      text: 'Log Out',
                     ),
             ],
           ),

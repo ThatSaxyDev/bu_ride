@@ -123,7 +123,7 @@ class SideNav extends ConsumerWidget {
                               : CircleAvatar(
                                   radius: 19.rH(context),
                                 ).tap(onTap: () {
-                                  authStateNotifier.logOut(context: context);
+                                  // authStateNotifier.logOut(context: context);
                                 }),
                           10.sbW(context),
                           SizedBox(
